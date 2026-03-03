@@ -1,5 +1,8 @@
 /* ---------- Login Page Styles ---------- */
 
+/* test if CSS loads */
+.login-form { background-color: pink !important; }
+
 /* Container for the login form */
 .login-form {
     background: white;
