@@ -1,82 +1,88 @@
-/* ---------- Login Page ---------- */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #fafafa;
-    color: #333;
-    margin: 0;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+/* ---------- Login Page Styles ---------- */
 
-.form-container {
-    background-color: #ffffff;
-    padding: 40px 30px;
+/* Container for the login form */
+.login-form {
+    background: white;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 400px;
+    margin: 120px auto 0 auto; /* centered on page */
+}
+
+/* Form heading */
+.login-form h2 {
+    color: #2e5d34;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.form-container h2 {
-    font-family: 'Georgia', serif;
-    color: #2e5d34;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    letter-spacing: 1px;
+/* Individual form groups */
+.login-form .form-group {
+    margin-bottom: 15px;
 }
 
-.form-container label {
+/* Labels */
+.login-form label {
     display: block;
-    text-align: left;
-    margin: 12px 0 5px 0;
+    margin-bottom: 5px;
     font-weight: bold;
     color: #2e5d34;
 }
 
-.form-container input[type="text"],
-.form-container input[type="password"] {
+/* Inputs */
+.login-form input[type="email"],
+.login-form input[type="password"] {
     width: 100%;
-    padding: 10px 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1em;
     box-sizing: border-box;
 }
 
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
-    border-color: #2e5d34;
-    outline: none;
-}
-
-.form-container input[type="submit"] {
+/* Submit button */
+.login-form .btn {
     background-color: #2e5d34;
     color: white;
+    padding: 12px 20px;
     border: none;
-    padding: 12px 0;
-    width: 100%;
     border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-.form-container input[type="submit"]:hover {
+.login-form .btn:hover {
     background-color: #244928;
 }
 
-.error {
+/* Error messages inside the form */
+.login-form .error {
     color: #c0392b;
-    font-size: 0.9em;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-p.error {
-    margin: 10px 0;
+/* Links below the form */
+.login-form .links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-form .links a {
+    color: #2e5d34;
+    text-decoration: none;
     font-weight: bold;
+}
+
+.login-form .links a:hover {
+    text-decoration: underline;
 }
