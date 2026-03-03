@@ -46,7 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <title>Eventify Signup</title>
-<link rel="stylesheet" href="../assets/css/signup.css">
+<link rel="stylesheet" href="../assets/css/style.css"> <!-- site-wide -->
+<link rel="stylesheet" href="../assets/css/signup.css"> <!-- form-specific -->
 </head>
 <body>
 
