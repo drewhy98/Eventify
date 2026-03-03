@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <title>Sign Up - Eventify</title>
-<link rel="stylesheet" href="../assets/css/style.css"> <!-- main site -->
-<link rel="stylesheet" href="../assets/css/signup.css"> <!-- signup-specific -->
+<link rel="stylesheet" href="site/assets/css/style.css"> <!-- main site -->
+<link rel="stylesheet" href="site/assets/css/signup.css"> <!-- signup-specific -->
 </head>
 <body>
 
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="links">
         <p>Already have an account? <a href="login.php">Login here</a></p>
-        <p><a href="../index.php">Back to Home</a></p>
+        <p><a href="site/index.php">Back to Home</a></p>
     </div>
 </div>
 
