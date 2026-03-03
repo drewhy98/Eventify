@@ -22,10 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            // Successful login
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_id'] = $user['id'];
-            header("Location:index.php"); // redirect to homepage
+            header("Location:index.php");
             exit();
         } else {
             $loginErr = "Incorrect email or password";
@@ -43,24 +42,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<div class="form-container">
+<div class="login-form">
     <h2>Login</h2>
     <p><span class="error">* required field</span></p>
 
     <?php if (!empty($loginErr)) echo "<p class='error'>$loginErr</p>"; ?>
 
     <form method="post" action="">
-        <label>Email:</label>
-        <input type="text" name="email" value="<?= htmlspecialchars($email) ?>">
-        <span class="error">* <?= $emailErr ?></span>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" required>
+            <span class="error">* <?= $emailErr ?></span>
+        </div>
 
-        <label>Password:</label>
-        <input type="password" name="password">
-        <span class="error">* <?= $passwordErr ?></span>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <span class="error">* <?= $passwordErr ?></span>
+        </div>
 
-        <br><br>
-        <input type="submit" value="Login">
+        <input type="submit" class="btn" value="Login">
     </form>
+
+    <div class="links">
+        <p>Don’t have an account? <a href="signup.php">Register here</a></p>
+        <p><a href="../index.php">Back to Home</a></p>
+    </div>
 </div>
 
 </body>
