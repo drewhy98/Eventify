@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<div class="form-container">
+<div class="signup-form">
     <h2>Register</h2>
     <p><span class="error">* required field</span></p>
 
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span class="error">* <?= $passwordErr ?></span>
 
         <br><br>
-        <input type="submit" value="Register">
+        <input type="submit" class="btn" value="Register">
     </form>
 </div>
 
