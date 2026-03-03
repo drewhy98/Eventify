@@ -1,40 +1,6 @@
-/* ---------- Signup Page CSS ---------- */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #fafafa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    flex-direction: column;
-}
+/* ---------- Signup Page Styles ---------- */
 
-/* Header */
-.header {
-    background-color: #ffffff;
-    color: #2e5d34;
-    padding: 25px 0;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    border-bottom: 1px solid #e0e0e0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.header h1 {
-    font-family: 'Georgia', serif;
-    margin: 0;
-    font-size: 2em;
-}
-
-.header p {
-    color: #2e5d34;
-    margin-top: 5px;
-}
-
-/* Form */
+/* Container for the signup form */
 .signup-form {
     background: white;
     padding: 40px;
@@ -42,9 +8,10 @@ body {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 400px;
-    margin-top: 120px;
+    margin: 120px auto 0 auto; /* centered on page */
 }
 
+/* Form heading */
 .signup-form h2 {
     color: #2e5d34;
     font-family: 'Georgia', serif;
@@ -52,20 +19,23 @@ body {
     text-align: center;
 }
 
-.form-group {
+/* Individual form groups */
+.signup-form .form-group {
     margin-bottom: 15px;
 }
 
-label {
+/* Labels */
+.signup-form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #2e5d34;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+/* Inputs */
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -73,7 +43,8 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-.btn {
+/* Submit button */
+.signup-form .btn {
     background-color: #2e5d34;
     color: white;
     padding: 12px 20px;
@@ -86,11 +57,12 @@ input[type="password"] {
     transition: background-color 0.3s;
 }
 
-.btn:hover {
+.signup-form .btn:hover {
     background-color: #244928;
 }
 
-.error {
+/* Error messages inside the form */
+.signup-form .error {
     color: #c0392b;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
@@ -100,7 +72,8 @@ input[type="password"] {
     margin-bottom: 15px;
 }
 
-.success-msg {
+/* Success messages */
+.signup-form .success-msg {
     color: #2e5d34;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
@@ -110,17 +83,18 @@ input[type="password"] {
     margin-bottom: 15px;
 }
 
-.links {
+/* Links below the form */
+.signup-form .links {
     text-align: center;
     margin-top: 20px;
 }
 
-.links a {
+.signup-form .links a {
     color: #2e5d34;
     text-decoration: none;
     font-weight: bold;
 }
 
-.links a:hover {
+.signup-form .links a:hover {
     text-decoration: underline;
 }
