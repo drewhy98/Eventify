@@ -1,91 +1,83 @@
-/* ---------- Signup Page Styles ---------- */
+<?php
+session_start();
+include_once "includes/dbconnect.php";
 
-.signup-form {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 400px;
-    margin: 120px auto 0 auto;
-}
+$nameErr = $emailErr = $passwordErr = "";
+$name = $email = $password = "";
 
-.signup-form h2 {
-    color: #2e5d34;
-    font-family: 'Georgia', serif;
-    margin-bottom: 20px;
-    text-align: center;
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = trim($_POST["name"]);
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
 
-.signup-form .form-group {
-    margin-bottom: 15px;
-}
+    if (empty($name)) $nameErr = "Name is required";
+    if (empty($email)) $emailErr = "Email is required";
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $emailErr = "Invalid email format";
+    if (empty($password)) $passwordErr = "Password is required";
+    elseif (strlen($password) < 6) $passwordErr = "Password must be at least 6 characters";
 
-.signup-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #2e5d34;
-}
+    if (empty($nameErr) && empty($emailErr) && empty($passwordErr)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-.signup-form input[type="text"],
-.signup-form input[type="email"],
-.signup-form input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+        try {
+            $stmt = $db->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+            $stmt->execute([
+                ':name' => $name,
+                ':email' => $email,
+                ':password' => $hashed_password
+            ]);
+            $successMsg = "Registration successful!";
+            $name = $email = $password = "";
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) $emailErr = "Email already exists!";
+            else die("Database error: " . $e->getMessage());
+        }
+    }
 }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign Up - Eventify</title>
+<link rel="stylesheet" href="../assets/css/style.css"> <!-- main site -->
+<link rel="stylesheet" href="../assets/css/signup.css"> <!-- signup-specific -->
+</head>
+<body>
 
-.signup-form .btn {
-    background-color: #2e5d34;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
+<div class="signup-form">
+    <h2>Register</h2>
+    <p><span class="error">* required field</span></p>
 
-.signup-form .btn:hover {
-    background-color: #244928;
-}
+    <?php if (isset($successMsg)) echo "<p class='success-msg'>$successMsg</p>"; ?>
 
-.signup-form .error {
-    color: #c0392b;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 15px;
-}
+    <form method="post" action="">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required>
+            <span class="error">* <?= $nameErr ?></span>
+        </div>
 
-.signup-form .success-msg {
-    color: #2e5d34;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 15px;
-}
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" required>
+            <span class="error">* <?= $emailErr ?></span>
+        </div>
 
-.signup-form .links {
-    text-align: center;
-    margin-top: 20px;
-}
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <span class="error">* <?= $passwordErr ?></span>
+        </div>
 
-.signup-form .links a {
-    color: #2e5d34;
-    text-decoration: none;
-    font-weight: bold;
-}
+        <input type="submit" class="btn" value="Register">
+    </form>
 
-.signup-form .links a:hover {
-    text-decoration: underline;
-}
+    <div class="links">
+        <p>Already have an account? <a href="login.php">Login here</a></p>
+        <p><a href="../index.php">Back to Home</a></p>
+    </div>
+</div>
+
+</body>
+</html>
