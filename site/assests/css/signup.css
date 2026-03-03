@@ -1,88 +1,126 @@
-/* ---------- Signup Page Styles ---------- */
+/* ---------- Signup Page CSS ---------- */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #fafafa;
-    color: #333;
-    margin: 0;
-    line-height: 1.6;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
 }
 
-.form-container {
+/* Header */
+.header {
     background-color: #ffffff;
-    padding: 40px 30px;
+    color: #2e5d34;
+    padding: 25px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.header h1 {
+    font-family: 'Georgia', serif;
+    margin: 0;
+    font-size: 2em;
+}
+
+.header p {
+    color: #2e5d34;
+    margin-top: 5px;
+}
+
+/* Form */
+.signup-form {
+    background: white;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
     width: 100%;
     max-width: 400px;
+    margin-top: 120px;
+}
+
+.signup-form h2 {
+    color: #2e5d34;
+    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.form-container h2 {
-    font-family: 'Georgia', serif;
-    color: #2e5d34;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    letter-spacing: 1px;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.form-container label {
+label {
     display: block;
-    text-align: left;
-    margin: 12px 0 5px 0;
+    margin-bottom: 5px;
     font-weight: bold;
     color: #2e5d34;
 }
 
-.form-container input[type="text"],
-.form-container input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     width: 100%;
-    padding: 10px 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1em;
     box-sizing: border-box;
 }
 
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
-    border-color: #2e5d34;
-    outline: none;
-}
-
-.form-container input[type="submit"] {
+.btn {
     background-color: #2e5d34;
     color: white;
+    padding: 12px 20px;
     border: none;
-    padding: 12px 0;
-    width: 100%;
     border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-.form-container input[type="submit"]:hover {
+.btn:hover {
     background-color: #244928;
 }
 
 .error {
     color: #c0392b;
-    font-size: 0.9em;
-}
-
-p.error {
-    margin: 10px 0;
-    font-weight: bold;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .success-msg {
     color: #2e5d34;
-    font-weight: bold;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
     margin-bottom: 15px;
+}
+
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    color: #2e5d34;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.links a:hover {
+    text-decoration: underline;
 }
