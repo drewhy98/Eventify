@@ -38,7 +38,6 @@ if (session_status() === PHP_SESSION_NONE) {
 </header>
 
 <nav>
-    <a href="view_events.php">View List of Events</a>
-    <a href="events.php">Events</a>
+<a href="view_events.php">View Events</a>
     <a href="about_us.php">About us</a>
 </nav>
