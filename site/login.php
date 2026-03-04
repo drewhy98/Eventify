@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_id'] = $user['id'];
-            header("Location:index.php");
+            header("Location: index.php");
             exit();
         } else {
             $loginErr = "Incorrect email or password";
@@ -30,15 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Login - Eventify</title>
-<link rel="stylesheet" href="../assets/css/style.css"> <!-- main site -->
-<link rel="stylesheet" href="../assets/css/login.css"> <!-- login-specific -->
-</head>
-<body>
+
+<?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/login.css">
 
 <div class="login-form">
     <h2>Login</h2>
@@ -46,17 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if (!empty($loginErr)) echo "<p class='error'>$loginErr</p>"; ?>
 
-    <form method="post" action="">
+    <form method="post">
         <div class="form-group">
             <label>Email:</label>
             <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" required>
-            <span class="error">* <?= $emailErr ?></span>
+            <span class="error"><?= $emailErr ?></span>
         </div>
 
         <div class="form-group">
             <label>Password:</label>
             <input type="password" name="password" required>
-            <span class="error">* <?= $passwordErr ?></span>
+            <span class="error"><?= $passwordErr ?></span>
         </div>
 
         <input type="submit" class="btn" value="Login">
@@ -64,9 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="links">
         <p>Don’t have an account? <a href="signup.php">Register here</a></p>
-        <p><a href="../index.php">Back to Home</a></p>
+        <p><a href="index.php">Back to Home</a></p>
     </div>
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
