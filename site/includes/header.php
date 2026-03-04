@@ -39,5 +39,5 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <nav>
 <a href="view_events.php">View Events</a>
-    <a href="about_us.php">About us</a>
+    <a href="about.php">About us</a>
 </nav>
