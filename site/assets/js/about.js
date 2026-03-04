@@ -1,20 +1,32 @@
+/*
+    Simple automatic slideshow
+    - Select all slides
+    - Remove "active" from current
+    - Add "active" to next
+    - Loop forever
+*/
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    const image = document.querySelector(".about-image");
-    const content = document.querySelector(".about-content");
+    const slides = document.querySelectorAll(".slide");
+    let currentIndex = 0;
 
-    function revealOnScroll() {
-        const trigger = window.innerHeight * 0.8;
+    // If there are no slides, stop script
+    if (slides.length === 0) return;
 
-        if (image.getBoundingClientRect().top < trigger) {
-            image.classList.add("show");
-        }
+    function showNextSlide() {
 
-        if (content.getBoundingClientRect().top < trigger) {
-            content.classList.add("show");
-        }
+        // Remove active class from current slide
+        slides[currentIndex].classList.remove("active");
+
+        // Move to next slide (loop back to 0 at end)
+        currentIndex = (currentIndex + 1) % slides.length;
+
+        // Add active class to new slide
+        slides[currentIndex].classList.add("active");
     }
 
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
+    // Change slide every 4 seconds
+    setInterval(showNextSlide, 4000);
+
 });
