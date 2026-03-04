@@ -29,21 +29,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $successMsg = "Registration successful!";
             $name = $email = $password = "";
         } catch (PDOException $e) {
-            if ($e->getCode() == 23000) $emailErr = "Email already exists!";
-            else die("Database error: " . $e->getMessage());
+            if ($e->getCode() == 23000) {
+                $emailErr = "Email already exists!";
+            } else {
+                die("Database error: " . $e->getMessage());
+            }
         }
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Sign Up - Eventify</title>
-<link rel="stylesheet" href="site/assets/css/style.css"> <!-- main site -->
-<link rel="stylesheet" href="site/assets/css/signup.css"> <!-- signup-specific -->
-</head>
-<body>
+
+<?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/signup.css">
 
 <div class="signup-form">
     <h2>Register</h2>
@@ -51,23 +48,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php if (isset($successMsg)) echo "<p class='success-msg'>$successMsg</p>"; ?>
 
-    <form method="post" action="">
+    <form method="post">
         <div class="form-group">
             <label>Name:</label>
             <input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required>
-            <span class="error">* <?= $nameErr ?></span>
+            <span class="error"><?= $nameErr ?></span>
         </div>
 
         <div class="form-group">
             <label>Email:</label>
             <input type="email" name="email" value="<?= htmlspecialchars($email) ?>" required>
-            <span class="error">* <?= $emailErr ?></span>
+            <span class="error"><?= $emailErr ?></span>
         </div>
 
         <div class="form-group">
             <label>Password:</label>
             <input type="password" name="password" required>
-            <span class="error">* <?= $passwordErr ?></span>
+            <span class="error"><?= $passwordErr ?></span>
         </div>
 
         <input type="submit" class="btn" value="Register">
@@ -75,9 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="links">
         <p>Already have an account? <a href="login.php">Login here</a></p>
-        <p><a href="site/index.php">Back to Home</a></p>
+        <p><a href="index.php">Back to Home</a></p>
     </div>
 </div>
 
-</body>
-</html>
+<?php include 'includes/footer.php'; ?>
