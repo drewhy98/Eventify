@@ -3,7 +3,9 @@ session_start();
 include_once "includes/dbconnect.php";
 include 'includes/header.php';
 
+// -----------------------------
 // Fetch latest 4 events for index slideshow
+// -----------------------------
 $stmt = $db->query("
     SELECT title, image_url 
     FROM events 
@@ -29,16 +31,14 @@ $indexEvents = $stmt->fetchAll();
                     src="<?= htmlspecialchars($event['image_url']); ?>" 
                     alt="<?= htmlspecialchars($event['title']); ?>"
                 >
-            <?php 
-                $first = false;
-            endforeach; 
-        else: ?>
+            <?php $first = false; endforeach; ?>
+        <?php else: ?>
             <p>No featured events available.</p>
         <?php endif; ?>
     </div>
 </section>
 
-<!-- Include external JS for slideshow -->
+<!-- Include external JS for index slideshow -->
 <script src="assets/js/slideshow_index.js"></script>
 
 <?php include 'includes/footer.php'; ?>
