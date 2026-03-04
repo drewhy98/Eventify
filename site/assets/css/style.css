@@ -149,13 +149,12 @@ footer {
 }
 
 .index-slideshow .slide {
-    display: none;            /* hide all slides initially */
+    display: none;       /* hide all slides by default */
     width: 100%;
     height: 420px;
     object-fit: cover;
-    transition: opacity 1s ease-in-out;
 }
 
 .index-slideshow .slide.active {
-    display: block;           /* show only active slide */
+    display: block;      /* show only active slide */
 }
