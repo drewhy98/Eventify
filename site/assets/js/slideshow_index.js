@@ -4,20 +4,16 @@
 // ==============================
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Select all slides in the index slideshow
+    // Select only slides inside index-slideshow
     const slides = document.querySelectorAll(".index-slideshow .slide");
-    let currentIndex = 0;
-
-    // Stop if no slides found
     if (!slides || slides.length === 0) return;
 
-    // Function to show next slide
-    function showNextSlide() {
-        slides[currentIndex].classList.remove("active");        // hide current slide
-        currentIndex = (currentIndex + 1) % slides.length;     // next index
-        slides[currentIndex].classList.add("active");          // show next slide
-    }
+    let currentIndex = 0;
 
-    // Start slideshow: change every 4 seconds
-    setInterval(showNextSlide, 4000);
+    // Show next slide every 4 seconds
+    setInterval(() => {
+        slides[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add("active");
+    }, 4000);
 });
