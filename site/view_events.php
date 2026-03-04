@@ -20,7 +20,8 @@ include_once "includes/dbconnect.php";
         ?>
 
             <div class="event-card">
-                <img src="assets/images/<?= htmlspecialchars($event['image']); ?>" alt="<?= htmlspecialchars($event['title']); ?>">
+            <img src="<?= htmlspecialchars($event['image_url']); ?>" 
+             alt="<?= htmlspecialchars($event['title']); ?>">
 
                 <h3><?= htmlspecialchars($event['title']); ?></h3>
                 <p class="event-place"><?= htmlspecialchars($event['place']); ?></p>
