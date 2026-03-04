@@ -39,7 +39,7 @@ $indexEvents = $stmt->fetchAll();
 </section>
 
 <!-- Include external JS for slideshow -->
-<script src="includes/assets/js/slideshow_index.js"></script>
+<script src="assets/js/slideshow_index.js"></script>
 
 <?php
 include 'includes/footer.php';
