@@ -3,14 +3,14 @@ session_start();
 include_once "includes/dbconnect.php";
 
 /*
-    Fetch latest 4 events
+    Fetch all events
 */
 $stmt = $db->query("
     SELECT title, image_url
     FROM events
     WHERE image_url IS NOT NULL
     ORDER BY event_date DESC
-    LIMIT 4
+    --LIMIT 4
 ");
 
 $events = $stmt->fetchAll();
