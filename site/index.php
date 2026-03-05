@@ -1,44 +1,61 @@
 <?php
 session_start();
 include_once "includes/dbconnect.php";
-include 'includes/header.php';
 
-// -----------------------------
-// Fetch latest 4 events for index slideshow
-// -----------------------------
+/*
+    Fetch latest 3 events for homepage hero slideshow
+*/
 $stmt = $db->query("
     SELECT title, image_url 
     FROM events 
     WHERE image_url IS NOT NULL 
     ORDER BY event_date DESC 
-    LIMIT 4
+    LIMIT 3
 ");
-$indexEvents = $stmt->fetchAll();
+
+$events = $stmt->fetchAll();
 ?>
 
-<!-- ===============================
-     INDEX PAGE SLIDESHOW
-================================ -->
-<section class="index-slideshow">
-    <h2>Featured This Month</h2>
+<?php include 'includes/header.php'; ?>
 
-    <div class="slideshow">
-        <?php if ($indexEvents): 
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-slideshow">
+
+        <?php
+        /*
+            Loop through database results
+            First image gets class 'active'
+        */
+        if ($events):
             $first = true;
-            foreach ($indexEvents as $event): ?>
-                <img 
-                    class="slide <?= $first ? 'active' : '' ?>" 
-                    src="<?= htmlspecialchars($event['image_url']); ?>" 
-                    alt="<?= htmlspecialchars($event['title']); ?>"
-                >
-            <?php $first = false; endforeach; ?>
-        <?php else: ?>
-            <p>No featured events available.</p>
-        <?php endif; ?>
+            foreach ($events as $event):
+        ?>
+
+            <div class="hero-slide <?= $first ? 'active' : '' ?>">
+                <img src="<?= htmlspecialchars($event['image_url']); ?>" 
+                     alt="<?= htmlspecialchars($event['title']); ?>">
+
+                <!-- Optional text overlay -->
+                <div class="hero-overlay">
+                    <h1><?= htmlspecialchars($event['title']); ?></h1>
+                    <a href="view_events.php" class="hero-btn">Explore Events</a>
+                </div>
+            </div>
+
+        <?php
+                $first = false;
+            endforeach;
+        else:
+            echo "<p>No featured events available.</p>";
+        endif;
+        ?>
+
     </div>
+
 </section>
 
-<!-- Include external JS for index slideshow -->
-<script src="assets/js/slideshow_index.js"></script>
+<script src="assets/js/hero.js"></script>
 
 <?php include 'includes/footer.php'; ?>
