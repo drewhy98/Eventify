@@ -1,27 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const searchInput = document.getElementById("searchInput");
-    const locationFilter = document.getElementById("locationFilter");
+    const placeFilter = document.getElementById("placeFilter");
     const priceFilter = document.getElementById("priceFilter");
     const cards = document.querySelectorAll(".event-card");
 
     function filterEvents() {
 
         const searchValue = searchInput.value.toLowerCase();
-        const locationValue = locationFilter.value.toLowerCase();
+        const placeValue = placeFilter.value;
         const priceValue = priceFilter.value;
 
         cards.forEach(card => {
 
             const title = card.dataset.title;
-            const location = card.dataset.location;
+            const place = card.dataset.place;
             const price = parseFloat(card.dataset.price);
 
-            let matchesSearch = title.includes(searchValue) || location.includes(searchValue);
-            let matchesLocation = locationValue === "" || location === locationValue;
-            let matchesPrice = priceValue === "" || price <= parseFloat(priceValue);
+            let matchesSearch =
+                title.includes(searchValue) ||
+                place.includes(searchValue);
 
-            if (matchesSearch && matchesLocation && matchesPrice) {
+            let matchesPlace =
+                placeValue === "" ||
+                place === placeValue;
+
+            let matchesPrice =
+                priceValue === "" ||
+                price <= parseFloat(priceValue);
+
+            if (matchesSearch && matchesPlace && matchesPrice) {
                 card.style.display = "block";
             } else {
                 card.style.display = "none";
@@ -31,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     searchInput.addEventListener("input", filterEvents);
-    locationFilter.addEventListener("change", filterEvents);
+    placeFilter.addEventListener("change", filterEvents);
     priceFilter.addEventListener("change", filterEvents);
 
 });
