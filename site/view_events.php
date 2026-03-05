@@ -2,8 +2,11 @@
 session_start();
 include_once "includes/dbconnect.php";
 
+/*
+    Fetch all events
+*/
 $stmt = $db->query("
-    SELECT id, title, location, event_date, price, image_url 
+    SELECT id, title, place, event_date, price, image_url 
     FROM events 
     ORDER BY event_date ASC
 ");
@@ -17,25 +20,29 @@ $events = $stmt->fetchAll();
 
     <h2 class="page-title">All Events</h2>
 
-    <!-- ===================== -->
-    <!-- SEARCH + FILTER BAR   -->
-    <!-- ===================== -->
+    <!-- ============================= -->
+    <!-- SEARCH + FILTER BAR           -->
+    <!-- ============================= -->
+
     <div class="filter-bar">
 
+        <!-- Live Search -->
         <input type="text" id="searchInput" placeholder="Search events...">
 
-        <select id="locationFilter">
-            <option value="">All Locations</option>
+        <!-- Filter by Place -->
+        <select id="placeFilter">
+            <option value="">All Places</option>
             <?php
-            $locations = array_unique(array_column($events, 'location'));
-            foreach ($locations as $loc):
+            $places = array_unique(array_column($events, 'place'));
+            foreach ($places as $place):
             ?>
-                <option value="<?= htmlspecialchars($loc); ?>">
-                    <?= htmlspecialchars($loc); ?>
+                <option value="<?= strtolower(htmlspecialchars($place)); ?>">
+                    <?= htmlspecialchars($place); ?>
                 </option>
             <?php endforeach; ?>
         </select>
 
+        <!-- Filter by Price -->
         <select id="priceFilter">
             <option value="">Any Price</option>
             <option value="25">Under £25</option>
@@ -46,28 +53,40 @@ $events = $stmt->fetchAll();
     </div>
 
 
-    <!-- ===================== -->
-    <!-- EVENTS GRID           -->
-    <!-- ===================== -->
+    <!-- ============================= -->
+    <!-- EVENTS GRID                   -->
+    <!-- ============================= -->
 
     <div class="events-grid" id="eventsGrid">
 
         <?php foreach ($events as $event): ?>
+
             <div class="event-card"
                  data-title="<?= strtolower(htmlspecialchars($event['title'])); ?>"
-                 data-location="<?= strtolower(htmlspecialchars($event['location'])); ?>"
+                 data-place="<?= strtolower(htmlspecialchars($event['place'])); ?>"
                  data-price="<?= $event['price']; ?>">
 
                 <img src="<?= htmlspecialchars($event['image_url']); ?>"
                      alt="<?= htmlspecialchars($event['title']); ?>">
 
                 <h3><?= htmlspecialchars($event['title']); ?></h3>
-                <p><?= htmlspecialchars($event['location']); ?></p>
-                <p><?= date("d M Y", strtotime($event['event_date'])); ?></p>
-                <p>£<?= number_format($event['price'], 2); ?></p>
+
+                <p class="event-place">
+                    <?= htmlspecialchars($event['place']); ?>
+                </p>
+
+                <p class="event-date">
+                    <?= date("d M Y", strtotime($event['event_date'])); ?>
+                </p>
+
+                <p class="event-price">
+                    £<?= number_format($event['price'], 2); ?>
+                </p>
 
                 <button class="btn">Buy Ticket</button>
+
             </div>
+
         <?php endforeach; ?>
 
     </div>
