@@ -126,7 +126,6 @@ footer {
 /* ============================= */
 /* SLIDESHOW FEATURED THIS MONTH SECTION  */
 /* ============================= */
-
 .featured-section {
     max-width: 1000px;
     margin: 50px auto;
@@ -139,56 +138,36 @@ footer {
     margin-bottom: 25px;
 }
 
-/* Slideshow container */
 .featured-slideshow {
     position: relative;
-    height: 450px; /* controlled height */
+    height: 450px;
     overflow: hidden;
     border-radius: 10px;
 }
 
-/* Individual slide */
+/* Slide is now an <a> tag */
 .featured-slide {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    display: block; /* important for anchor */
 }
 
 .featured-slide.active {
     opacity: 1;
 }
 
-/* Image styling */
 .featured-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* keeps image proportional */
+    object-fit: cover;
     border-radius: 10px;
 }
 
-/* Overlay box */
-.featured-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 6px;
-}
-
-.featured-btn {
-    display: inline-block;
-    margin-top: 10px;
-    background: #2e5d34;
-    color: white;
-    padding: 8px 15px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.featured-btn:hover {
-    background: #244928;
+/* Optional: subtle hover effect */
+.featured-slide:hover img {
+    transform: scale(1.02);
+    transition: 0.3s ease;
 }
