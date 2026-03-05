@@ -10,7 +10,6 @@ $stmt = $db->query("
     FROM events
     WHERE image_url IS NOT NULL
     ORDER BY event_date DESC
-    --LIMIT 4
 ");
 
 $events = $stmt->fetchAll();
