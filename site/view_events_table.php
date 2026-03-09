@@ -1,4 +1,3 @@
-//jquery inbuilt table https://datatables.net/
 
 <?php
 session_start();
@@ -7,6 +6,7 @@ include_once "includes/dbconnect.php";
 
 <?php include 'includes/header.php'; ?>
 
+//jquery inbuilt table https://datatables.net/
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
 
 <h2 class="page-title">Events Table</h2>
