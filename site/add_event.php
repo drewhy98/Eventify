@@ -18,7 +18,6 @@ include_once "includes/dbconnect.php";
     <th>Location</th>
     <th>Date</th>
     <th>Price</th>
-    <th></th>
 </tr>
 </thead>
 
