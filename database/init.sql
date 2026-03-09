@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS events (
     place VARCHAR(255) NOT NULL,
     event_date DATE NOT NULL,
     image_url VARCHAR(500) DEFAULT NULL,
-    price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    price DECIMAL(10,2) NOT NULL DEFAULT 0.00
 );
 
 CREATE TABLE users (
