@@ -25,7 +25,7 @@ $image_url,
 $price
 ]);
 
-header("Location: events.php");
+header("Location: view_events_table.php");
 exit();
 }
 ?>
