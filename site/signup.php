@@ -5,11 +5,13 @@ include_once "includes/dbconnect.php";
 $nameErr = $emailErr = $passwordErr = "";
 $name = $email = $password = "";
 
+//recieve values by post method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
 
+    //if empty fields, give error
     if (empty($name)) $nameErr = "Name is required";
     if (empty($email)) $emailErr = "Email is required";
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $emailErr = "Invalid email format";
@@ -19,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($nameErr) && empty($emailErr) && empty($passwordErr)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // if input is valid, insert record to db. check if email is already used and give error or success 
         try {
             $stmt = $db->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
             $stmt->execute([
