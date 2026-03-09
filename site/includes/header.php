@@ -28,7 +28,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <form method="post" action="logout.php" style="display:inline;">
                 <button type="submit" class="logout-btn">Logout</button>
-                <a href="basket.php">View Basket</a>
+                <a href="add_event.php">Add New Event</a>
             </form>
         <?php else: ?>
             <a href="login.php">Log In</a>
