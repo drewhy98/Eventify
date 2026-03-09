@@ -5,15 +5,18 @@ include_once "includes/dbconnect.php";
 $emailErr = $passwordErr = $loginErr = "";
 $email = $password = "";
 
+//return input with post method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $password = $_POST["password"];
 
+    //validation for empty / invalid fields
     if (empty($email)) $emailErr = "Email is required";
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $emailErr = "Invalid email format";
 
     if (empty($password)) $passwordErr = "Password is required";
 
+ 
     if (empty($emailErr) && empty($passwordErr)) {
         $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->execute([':email' => $email]);
