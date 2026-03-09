@@ -6,9 +6,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 /* ---------- DATABASE CONNECTION ---------- */
 $host = "localhost";
-$dbname = "eventify_db";   // Change to your DB name
-$username = "root";        // Change to your DB username
-$password = "";            // Change to your DB password
+$dbname = "eventify_db";   // DB name
+$username = "root";        // DB username
+$password = "";            // DB password
+
+//create connection PDO used incase DB type changes later on
 
 try {
     $db = new PDO(
@@ -20,6 +22,8 @@ try {
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]
     );
+
+    //check connection
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
