@@ -41,13 +41,6 @@ foreach ($events as $event):
 
 <td>£<?= number_format($event['price'], 2); ?></td>
 
-<td>
-<form method="post" action="buy_ticket.php">
-<input type="hidden" name="event_id" value="<?= $event['id']; ?>">
-<button class="btn">Buy Ticket</button>
-</form>
-</td>
-
 </tr>
 
 <?php endforeach; ?>
