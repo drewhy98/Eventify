@@ -72,7 +72,7 @@ $events = $stmt->fetchAll();
                 so there's always something new to discover.
             </p>
 
-            <a href="view_events.php">
+            <a href="view_events_grid.php">
                 <button class="about-btn">Explore Events</button>
             </a>
         </div>
