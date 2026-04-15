@@ -30,7 +30,7 @@ $events = $stmt->fetchAll();
         ?>
 
             <!-- Entire slide is clickable -->
-            <a href="view_events.php" 
+            <a href="view_events_grid.php" 
                class="featured-slide <?= $first ? 'active' : '' ?>">
 
                 <img src="<?= htmlspecialchars($event['image_url']); ?>"
