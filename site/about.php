@@ -66,10 +66,13 @@ $events = $stmt->fetchAll();
                 From concerts to festivals, we make discovering and booking
                 events simple and exciting.
             </p>
+            The developers name is Drew Hyman and she is a 27 year old woman from Wales, 
+            who is currently undergoing her software development degree at Cardiff met. 
 
             <p>
                 Our platform updates dynamically with the latest events,
                 so there's always something new to discover.
+                
             </p>
 
             <a href="view_events_grid.php">
